@@ -1,0 +1,293 @@
+@import '../styles/colors.scss';
+@import '../styles/mixins.scss';
+
+.header {
+  height: 70px;
+  background-color: #16151a;
+  border-bottom: 1px solid #222227;
+  z-index: 1;
+  position: sticky;
+  padding-left: 20px;
+  padding-right: 20px;
+  top: 0px;
+  & .logo{
+    font: {
+      size: 2em;
+      weight: 700;
+    }
+    & span{
+      color: #6164ff;
+      font: {
+        size: 1.3em;
+      }
+    }
+  }
+  & .hamburger{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    &:hover{
+      cursor: pointer;
+        & div{
+          background-color: $SWATCH_COLOR;
+        }
+      }
+    & div{
+      height: 3px;
+      background-color: grey;
+      width: 60px;
+      display: block;
+      margin-bottom: 5px;
+    }
+    & div:first-child{
+      width: 25px;
+    }
+    & div:nth-child(2){
+      width: 15px;
+    }
+    & div:nth-child(3){
+      width: 5px
+    }
+  }
+}
+
+.text-grey{
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: #bdbdbd;
+    font-size: 16px;
+}
+
+.animatedCarousel{
+  & .heading{
+    font-size: 30px;
+    font-weight: 400;
+  }
+  & .item{
+    @extend .item;
+  }
+}
+
+.item{
+  cursor: pointer;
+  height: fit-content !important;
+  padding: 20px;
+  &__image{
+    width: 100%;
+    padding-top: 100%;
+    background-color: #D9AFD9;
+    background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+    border-radius: 16px;
+    position: relative;
+    & img{
+      width: 100%;
+    }
+    &>div:first-child{
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    &__clock{
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      height: 32px;
+      width: 90px;
+      border-radius: 16px;
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      border: 2px solid #6164ff;
+      color: #fff;
+      font-size: 12px;
+      background-color: #222227;
+      font-weight: 400;
+      padding: 0 12px;
+      @include flex-center;
+    }
+  }
+}
+
+.nftName{
+  display: block;
+  width: 100%;
+  color: #fff;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  margin-bottom: 10px;
+  transition: color 0.5s ease;
+  &:hover{
+    color: $SWATCH_COLOR;
+  }
+}
+.avatar{
+  display: block;
+  width: 40px !important;
+  height: 40px;
+  border-radius: 10px;
+  margin-right: 10px;
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  position: relative;
+  &::after{
+    content: '';
+    position: absolute;
+    display: block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #fff;
+    bottom: -2px;
+    left: 24px;
+    border-radius: 50%;
+    background: url("../public/images/verified.svg") no-repeat center #2f80ed;
+    background-size: 14px auto;
+    z-index: 1;
+    pointer-events: none;
+  }
+}
+.avatar + div{
+  @extend .text-grey;
+}
+.amount{
+  font-size: 18px;
+  line-height: 20px;
+  padding-left: 20px;
+}
+
+.productDetails{
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.479);
+  animation: .4s fadeIn ease;
+  @include flex-center;
+  & .dialog{
+    animation: .4s scaleIn ease;
+    z-index: 1;
+    overflow: hidden;
+    background-color: #16151a;
+    height: 85%;
+    width: 50%;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    @media screen and (max-width: 518px) {
+      width: 100%;
+      height: 100vh;
+    }
+    @media screen and (max-width: 993px) {
+      width: 70%;
+    }
+    @media screen and (max-width: 720px) {
+      width: 504px
+    }
+    & button{
+      border-radius: 12px;
+      padding: 0 16px;
+      height: 40px;
+      font-weight: 600;
+      margin-left: 16px;
+      &.proceed{
+        @extend .btn-grad
+      }
+      &.close{
+        border: 1px solid white;
+        transition: 0.5s;
+        &:hover{
+          background-color: white;
+          color: black;
+        }
+      }
+    }
+    & .imgBackground{
+      height: 200px;
+      background-color: #21D4FD;
+      background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+      position: relative;
+      overflow: visible;
+      & .image{
+        padding-top: 40%;
+        width: 40%;
+        background-color: $SWATCH_COLOR;
+        position: absolute;
+        bottom: 0px;
+        right: 40px;
+        transform: translateY(50%);
+        border-radius: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.376);
+        & img{
+          width: 100%;
+        }
+      }
+    }
+    & .attributes{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(auto, 1fr));
+      grid-gap: 20px;
+      padding: 20px;
+      @media screen and (max-width: 585px){
+        grid-template-columns: repeat(2, minmax(auto, 1fr));
+      }
+      &>div{
+        background-color: rgba(21, 178, 229, 0.06);
+        border-radius: 6px;
+        border: 1px solid $SWATCH_COLOR;
+        padding: 10px;
+        text-align: center;
+        & .top{
+          color: $SWATCH_COLOR;
+          font-size: 11px;
+          font-weight: 500;
+          text-transform: uppercase;
+          & + {
+            color: white;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.btn-grad {
+  background-image: linear-gradient(to right, #B721FF 0%, #252669  51%, #6164ff 100%);
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  border-radius: 10px;
+  display: block;
+  &:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+@keyframes fadeIn {
+  from{
+    opacity: 0;
+  }
+  to{opacity: 1;}
+}
+
+@keyframes scaleIn {
+  from{
+    transform: scale(70%);
+  }
+  to{
+    transform: scale(100%);
+  }
+}
+
+
+         
